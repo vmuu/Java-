@@ -29,8 +29,32 @@ public class HellowWord {
 
 #### 3、下载eclipse，完成HelloWorld程序。
 
+下载地址：https://www.eclipse.org/downloads/
+
+File-New-Java Project
+
 #### 4、使用Scanner类的输入法方法来输入数据，然后将输入的数据显示在屏幕上。
 
+```java
+import java.util.Scanner;
+
+public class MyTest {
+	public static void main(String[] args) {
+		int flag = 1;
+		while (flag!=0) {
+			Scanner input = new Scanner(System.in);
+			System.out.println("请输入字符：");
+			String next = input.next();
+			if (next.equals("0")) {
+				flag = 0;
+				System.err.println("退出成功！");
+			}
+			System.out.println("【输入0退出】您输入的字符为："+next);
+		}
+	}
+}
+
+```
 
 <br/>
 
@@ -127,22 +151,37 @@ public class MyTest {
 ##### 3、大马、小马和马驹共100匹，共驮100片瓦。大马一驮三，小马一驮二，马驹二驮一，一次驮完，三种吗都驮，请输出所有组合。
 
 设大马、中马、马驹各为：
-x+y+z=100 .(1)
-3x+2y+1/2z=100,即6x+4y+z=200 .(2)
+x+y+z=100
+3x+2y+z/2=200
 
-(2)-(1)：5x+3y=100
-3y=100-5x=5(20-x)
-y必须是5的倍数,20-x必须是3的倍数
+```java
+public class MyTest {
+	public static void main(String[] args) {
+		for (int x = 1; x <= 33; x++) {
+			for (int y = 1; y <= 50; y++) {
+				for (int z = 0; z < 100; z+=2) {
+					if (x+y+z==100 & 3*x+2*y+z/2==100) {
+						System.out.println("大马："+x+"，中马："+y+"，马驹："+z);
+					}
+				}
+			}
+		}
+	}
+}
+```
 
-(1)*4-(2)：-2x+3z=200
-z=2(x+100)/3
-20-x可能等于3,6,9,12,15,18
-20-x=3时x=17,y=5,z=78
-20-x=6时x=14,y=10,z=76
-20-x=9时x=11,y=15,z=74
-20-x=12时x=8,y=20,z=72
-20-x=15时x=5,y=25,z=70
-20-x=18时x=2,y=30,z=68
+结果：
+
+```java
+大马：2，中马：30，马驹：68
+大马：5，中马：25，马驹：70
+大马：8，中马：20，马驹：72
+大马：11，中马：15，马驹：74
+大马：14，中马：10，马驹：76
+大马：17，中马：5，马驹：78
+```
+
+
 
 ##### 4、输出九九乘法口诀。
 
@@ -162,13 +201,128 @@ public class MyTest {
 ##### 5、有n个小孩围成一个圈，顺序排号。从第一个小孩开始报数（从1到3报数），凡报到3的小孩退出圈外，问最后留下的是原来第几号小孩。
 
 
+
 <br/>
 
 ###  实践题3
 
 ##### 1、定义一个公司员工类：属性有方法、员工号、部门及当前员工对象数；有2个构造方法（一个无参构造和一个姓名、员工号及部门编号的有参构造方法）、获取和设置各属性的方法，以及获取当前员工对象数的方法。
+```java
+public class Employee {
+    private String name; // 姓名
+    private int id; // 员工号
+    private int num; // 员工数
+     
+    public Employee() { // 无参构造器
+    }
+ 
+    public Employee(String name, int id, int num) { // 有参构造器
+        this.name = name;
+        this.id = id;
+        this.num = num;
+    }
+    // 属性的get set方法
+    public String getName() {
+        return name;
+    }
+ 
+    public void setName(String name) {
+        this.name = name;
+    }
+ 
+    public int getId() {
+        return id;
+    }
+ 
+    public void setId(int id) {
+        this.id = id;
+    }
+ 
+    public int getNum() {
+        return num;
+    }
+ 
+    public void setNum(int num) {
+        this.num = num;
+    }
+     
+}
+```
 
 ##### 2、实现一个先进先出（FIFO）队列类（MyQueue），并用测试类进行测试。
 
+
+
 ##### 3、编写一个方法，计算一个字符串中某一子串的次数并返回。字符串和子串通过方法参数传入。然后用测试类进行测试。
 
+
+
+<br/>
+
+###  实践题4
+
+##### 1、定义带默认构造方法的类A和类B，在默认构造方法中分别输出”执行了类A的构造方法！”和执行了类B的构造方法！“。再定义一个类C，然他从类A继承，在类C中定义一个类B的引用属性成员并同时创建一个类B的对象让其指向，在默认构造方法中输出”执行了类C的构造方法！“。定义测试类，在main()方法中创建一个类C的对象，执行程序观察结果并分析
+
+##### 2、定义一个USB接口，在其中定义一个start()方法和一个stop()方法，分别表示USB设备开始和结束工作。定义一个U盘类Flash和打印机类Print实现USB接口。定义一个计算机类Computer，在其中定义一个静态方法plugin()，方法的参数是一个USB接口类型的引用，在方法中调用参数对象的start()方法和stop()方法。定义一个测试类进行测试。
+
+##### 3、定义一个水果接口Fruit，在其中定义一个表示吃水果的方法eat()方法。定义一个苹果类Apple和一个橘子类Orange实现接口Fruit。定义一个工厂类FruitFactory，在其中定一个一个带String类型的参数的静态方法getInstance()，在方法中根据参数创建相应类型的对象（列如，参数是apple，就创建Apple类的对象）并返回对象。定义测试类进行测试。
+
+
+## 实验与课程设计
+
+### 实验1 Java编程基础 实验题
+
+1、使用循环语句输出如下图案。
+
+```
+   *
+  ***
+ *****
+*******
+```
+
+代码：
+```java
+public class MyTest {
+	public static void main(String[] args) {
+		for (int a = 1; a <= 4; a++) {
+            for (int i = 1; i <= 4 - a; i++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= 2*a-1; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
+
+	}
+}
+```
+
+```java
+public class MyTest {
+	public static void main(String[] args) {
+		Print(5);
+	}
+
+	static void Print(int n) {
+		if (n > 0) {
+			Print(n - 1);
+			for (int i = 5 - n; i > 0; i--) {
+				System.out.print(" ");
+			}
+			for (int j = (n * 2) - 1; j > 0; j--) {
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+		return;
+	}
+}
+```
+
+
+
+
+
+###  实践题5
